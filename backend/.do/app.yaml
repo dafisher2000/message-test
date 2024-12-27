@@ -1,0 +1,19 @@
+name: message-service
+services:
+- name: api
+  github:
+    branch: main
+    deploy_on_push: true
+    repo: owner/message-service
+  source_dir: /backend
+  environment_slug: node-js
+  envs:
+  - key: RABBITMQ_URL
+    scope: RUN_TIME
+    value: ${RABBITMQ_URL}
+  - key: QUEUE_NAME
+    scope: RUN_TIME
+    value: messages
+  - key: CORS_ORIGIN
+    scope: RUN_TIME
+    value: ${APP_URL}
